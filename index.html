@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vishnu Priya Mallineni — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Vishnu Priya Mallineni — Portfolio (Responsive)</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,290 +22,386 @@
       --b-ml:#e7f6f5; --b-nlp:#efe9fb; --b-ts:#fff2e6; --b-aws:#eef6ff; --b-db:#edf7ee;
     }
 
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text)}
 
     /* NAV */
-    nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(255,255,255,.9);border-bottom:1px solid var(--border);height:var(--navh);}
-    .nav-container{max-width:var(--container);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
-    .logo span{font-weight:700;font-size:1.1rem;color:var(--brand);}
-    .links{display:flex;gap:18px;align-items:center;}
-    .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--text);padding:8px 12px;border-radius:8px;transition:.2s;}
-    .links a:hover{background:#f1fafb;color:#0f5e66;}
+    nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(255,255,255,.9);border-bottom:1px solid var(--border);height:var(--navh)}
+    .nav-container{max-width:var(--container);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+    .logo span{font-weight:700;font-size:1.1rem;color:var(--brand)}
+
+    /* desktop links */
+    .links{display:flex;gap:18px;align-items:center}
+    .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--text);padding:10px 12px;border-radius:8px;transition:.2s}
+    .links a:hover{background:#f1fafb;color:#0f5e66}
+
+    /* mobile menu button (hidden on desktop) */
+    .menu-btn{display:none;background:transparent;border:0;width:44px;height:44px;border-radius:10px;align-items:center;justify-content:center}
+    .menu-btn:focus-visible{outline:2px solid #0f5e66}
+
+    /* mobile drawer */
+    .drawer{position:fixed;inset:0 0 auto auto;width:min(92vw,360px);max-width:360px;background:#fff;border-left:1px solid var(--border);box-shadow:var(--shadow);transform:translateX(100%);transition:transform .25s ease;z-index:60;height:100vh;display:flex;flex-direction:column}
+    .drawer.open{transform:translateX(0)}
+    .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border)}
+    .drawer-links{display:flex;flex-direction:column;padding:8px}
+    .drawer-links a{padding:12px 14px;border-radius:10px;text-decoration:none;color:var(--text);font-weight:600}
+    .drawer-links a:hover{background:#f1fafb}
+    .drawer-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.35);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:55}
+    .drawer-backdrop.show{opacity:1;pointer-events:auto}
 
     /* HERO */
-    .main-container{max-width:var(--container);margin:40px auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
-    .profile-photo{width:100%;max-width:360px;border-radius:20px;box-shadow:var(--shadow);}
-    h1{font-size:clamp(28px,4vw,38px);margin:0 0 12px;line-height:1.2;}
-    h1 span{color:var(--brand);}
-    .no-wrap{white-space:nowrap;}
-    .typewriter{font-weight:600;color:var(--muted);margin:8px 0 16px;}
-    p{line-height:1.7;color:#374151;}
+    .main-container{max-width:var(--container);margin:40px auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    .photo-wrap{display:flex;justify-content:center}
+    .profile-photo{width:100%;max-width:360px;border-radius:20px;box-shadow:var(--shadow)}
+    h1{font-size:clamp(28px,4vw,38px);margin:0 0 12px;line-height:1.2}
+    h1 span{color:var(--brand)}
+    .no-wrap{white-space:nowrap}
+    .typewriter{font-weight:600;color:var(--muted);margin:8px 0 16px}
+    p{line-height:1.7;color:#374151}
 
-    .social-links{display:flex;gap:14px;margin-top:12px;margin-bottom:20px;}
-    .social-links a{color:#0f5e66;font-size:1.1rem;display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:10px;background:#f1fafb;transition:.2s;}
-    .social-links a:hover{background:#e6f6f7;border-color:#bfe7ea;}
+    .social-links{display:flex;gap:14px;margin-top:12px;margin-bottom:20px}
+    .social-links a{color:#0f5e66;font-size:1.1rem;display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:10px;background:#f1fafb;transition:.2s}
+    .social-links a:hover{background:#e6f6f7;border-color:#bfe7ea}
 
     /* Buttons */
-    .btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:18px;}
-    .btn-primary, .btn-secondary{
-      display:inline-flex;align-items:center;gap:8px;
-      font-weight:600;border:none;border-radius:10px;padding:12px 18px;cursor:pointer;transition:.2s;
-      text-decoration:none;
-    }
-    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 6px 18px rgba(111,179,184,.25);}
-    .btn-primary:hover{filter:brightness(0.95);}
-    .btn-secondary{background:#f1fafb;color:#0f5e66;border:1px solid var(--border);}
-    .btn-secondary:hover{background:#e6f6f7;border-color:#bfe7ea;}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:18px}
+    .btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:8px;font-weight:600;border:none;border-radius:10px;padding:12px 18px;cursor:pointer;transition:.2s;text-decoration:none}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 6px 18px rgba(111,179,184,.25)}
+    .btn-primary:hover{filter:brightness(.95)}
+    .btn-secondary{background:#f1fafb;color:#0f5e66;border:1px solid var(--border)}
+    .btn-secondary:hover{background:#e6f6f7;border-color:#bfe7ea}
 
     /* SECTIONS */
-    section{scroll-margin-top:calc(var(--navh) + 20px);}
-    .section{padding:72px 0;}
-    .section .container{max-width:var(--container);margin:0 auto;padding:0 20px;}
-    .section h2{font-size:1.8rem;margin:0 0 18px;background:linear-gradient(90deg,#0f5e66,#6b6fb8);-webkit-background-clip:text;background-clip:text;color:transparent;}
-    .content{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+    section{scroll-margin-top:calc(var(--navh) + 20px)}
+    .section{padding:72px 0}
+    .section .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+    .section h2{font-size:1.8rem;margin:0 0 18px;background:linear-gradient(90deg,#0f5e66,#6b6fb8);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .content{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
 
-    .content ul{margin:0 0 6px 1.2rem;padding:0;}
-    .content li{margin:.35rem 0;}
+    .content ul{margin:0 0 6px 1.2rem;padding:0}
+    .content li{margin:.35rem 0}
 
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:.2s;}
-    .card:hover{transform:translateY(-2px);}
-    .card h3{margin:6px 0 8px;font-size:1.05rem;color:#0f5e66;}
-    .meta{color:var(--muted);font-size:.9rem;margin-bottom:10px;}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
-    .badge{border:1px solid var(--border);color:var(--text);font-size:.8rem;padding:4px 10px;border-radius:999px;background:#f6f7fb;}
-    .badge.ml{background:var(--b-ml);} .badge.nlp{background:var(--b-nlp);} .badge.ts{background:var(--b-ts);} .badge.aws{background:var(--b-aws);} .badge.db{background:var(--b-db);}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
+    .grid > .card{grid-column:span 6}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:.2s}
+    .card:hover{transform:translateY(-2px)}
+    .card h3{margin:6px 0 8px;font-size:1.05rem;color:#0f5e66}
+    .meta{color:var(--muted);font-size:.9rem;margin-bottom:10px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .badge{border:1px solid var(--border);color:var(--text);font-size:.8rem;padding:4px 10px;border-radius:999px;background:#f6f7fb}
+    .badge.ml{background:var(--b-ml)} .badge.nlp{background:var(--b-nlp)} .badge.ts{background:var(--b-ts)} .badge.aws{background:var(--b-aws)} .badge.db{background:var(--b-db)}
 
-    .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-bottom:10px;border:1px solid var(--border);}
+    .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-bottom:10px;border:1px solid var(--border);background:#f8fafc}
 
-    @media(max-width:920px){
-      .main-container{grid-template-columns:1fr;gap:30px;}
-      .links{display:none;}
+    /* RESPONSIVE BREAKPOINTS */
+    /* >= 1200px (large desktop): widen columns */
+    @media (min-width:1200px){
+      .grid{gap:20px}
+      .grid > .card{grid-column:span 4}
     }
+
+    /* 920px–1199px (tablet landscape / small desktop) */
+    @media (max-width:1199px){
+      .grid{grid-template-columns:repeat(12,1fr)}
+      .grid > .card{grid-column:span 6}
+    }
+
+    /* <= 920px (tablet & phones) */
+    @media (max-width:920px){
+      .main-container{grid-template-columns:1fr;gap:28px}
+      .nav-container{padding:0 12px}
+      .links{display:none}
+      .menu-btn{display:inline-flex}
+      .photo-wrap{justify-content:center}
+      .profile-photo{max-width:300px}
+      .section{padding:56px 0}
+      .grid > .card{grid-column:span 12}
+    }
+
+    /* <= 600px (phones) */
+    @media (max-width:600px){
+      :root{--navh:64px}
+      .profile-photo{max-width:220px}
+      .btn-row{gap:10px}
+      .btn-primary,.btn-secondary{width:100%;justify-content:center}
+      .social-links{gap:10px}
+      .social-links a{width:48px;height:48px}
+      .section h2{font-size:1.45rem}
+      .content{padding:18px}
+    }
+
+    /* Utility: visually hidden but focusable skip link */
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:16px;top:12px;width:auto;height:auto;background:#0f5e66;color:#fff;padding:8px 12px;border-radius:8px;z-index:100}
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Primary">
     <div class="nav-container">
       <div class="logo"><span>Vishnu Priya Mallineni</span></div>
-      <div class="links">
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#contactme">Contact</a>
+      <div class="links" role="menubar">
+        <a href="#skills" role="menuitem">Skills</a>
+        <a href="#education" role="menuitem">Education</a>
+        <a href="#experience" role="menuitem">Experience</a>
+        <a href="#projects" role="menuitem">Projects</a>
+        <a href="#certifications" role="menuitem">Certifications</a>
+        <a href="#contactme" role="menuitem">Contact</a>
       </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-haspopup="true" aria-controls="mobileDrawer" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile drawer -->
+  <div class="drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+    <div class="drawer-header">
+      <strong>Menu</strong>
+      <button class="menu-btn" id="closeDrawer" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-links">
+      <a href="#skills" class="drawer-link">Skills</a>
+      <a href="#education" class="drawer-link">Education</a>
+      <a href="#experience" class="drawer-link">Experience</a>
+      <a href="#projects" class="drawer-link">Projects</a>
+      <a href="#certifications" class="drawer-link">Certifications</a>
+      <a href="#contactme" class="drawer-link">Contact</a>
+    </div>
+  </div>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
   <!-- HERO -->
-  <section>
-    <div class="main-container">
-      <div>
-        <img src="main.png" alt="Profile of Vishnu Priya Mallineni" class="profile-photo" loading="eager" decoding="async">
-      </div>
-      <div>
-        <h1 data-aos="fade-up">Hey, I'm <span class="no-wrap">Vishnu Priya Mallineni</span></h1>
-        <div class="typewriter" data-aos="fade-up" data-aos-delay="100">Data Scientist / AI-ML Engineer</div>
-        <p data-aos="fade-up" data-aos-delay="200">
-          A Computer Science graduate passionate about using data to drive insights and building AI systems that solve real-world problems.
-        </p>
-        <p data-aos="fade-up" data-aos-delay="300">
-          Actively seeking roles in <strong>Data Science</strong> and <strong>AI/ML Engineering</strong>, with strong foundations in programming, machine learning, and cloud technologies.
-        </p>
-
-        <div class="social-links" data-aos="fade-up" data-aos-delay="400">
-          <a href="https://www.linkedin.com/in/vishnu-priya-mallineni" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="mailto:vishnupriyamallineni@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  <main id="main">
+    <section>
+      <div class="main-container">
+        <div class="photo-wrap">
+          <img src="main.png" alt="Profile of Vishnu Priya Mallineni" class="profile-photo" loading="eager" decoding="async">
         </div>
-
-        <!-- Buttons -->
-        <div class="btn-row" data-aos="fade-up" data-aos-delay="520">
-          <a class="btn-primary" href="https://drive.google.com/uc?export=download&id=1T4uNeoWvS6qdIRPWf_0bcd7T97qdcDVR" target="_blank" rel="noopener">
-            <i class="fa-solid fa-download"></i> Download Resume
-          </a>
-          <!-- UPDATED: opens Google Form in new tab -->
-          <a class="btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScQekIia_LDdzmxOJHAKNevjNDfkG3nHrsfY2hs14Z-VrKPbA/viewform?usp=sharing&ouid=112880071553512636044" target="_blank" rel="noopener" aria-label="Open contact form">
-            <i class="fa-solid fa-paper-plane"></i> Get In Touch
-          </a>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section">
-    <div class="container">
-      <h2>Skills</h2>
-      <div class="content">
-        <ul>
-          <li><strong>Programming:</strong> Python, R, Java, C/C++/C#, SQL, MATLAB, Bash, Git, Jupyter</li>
-          <li><strong>ML/AI:</strong> TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, Random Forest, Deep &amp; Reinforcement Learning</li>
-          <li><strong>Data Science:</strong> Feature Engineering, Statistical Modeling, NLP, Time-Series Forecasting, Experiment Design, A/B Testing</li>
-          <li><strong>Databases &amp; Big Data:</strong> MySQL, PostgreSQL, MongoDB, Hadoop, Spark</li>
-          <li><strong>Visualization:</strong> Matplotlib, Seaborn, Plotly, Tableau, Power BI, Dash</li>
-          <li><strong>Cloud &amp; MLOps:</strong> AWS (EC2, S3, SageMaker), Docker, CI/CD, Model Monitoring</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education" class="section">
-    <div class="container">
-      <h2>Education</h2>
-      <div class="grid">
-        <div class="card">
-          <img class="thumb" src="Screenshot 2025-08-31 201522.png" alt="Wright State University logo">
-          <h3>M.S. in Computer Science</h3>
-          <div class="meta">Wright State University · Aug 2023 – Jul 2025</div>
-        </div>
-        <div class="card">
-          <img class="thumb" src="Screenshot 2025-08-31 202025.png" alt="Sree Vidyanikethan Engineering College logo">
-          <h3>B.Tech in Electronics &amp; Communication Engineering</h3>
-          <div class="meta">Sree Vidyanikethan Engineering College · Aug 2019 – May 2023</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section">
-    <div class="container">
-      <h2>Experience</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Graduate Research Assistant — Wright State University</h3>
-          <div class="meta">Aug 2024 – Jul 2025 · Dayton, OH</div>
-          <ul>
-            <li>Built a Python simulation framework for routing in Ad-Hoc Wireless Networks across 10k+ randomized topologies.</li>
-            <li>Engineered datasets capturing SINR, hop-count, bottleneck rate, latency, and energy utilization; automated data quality checks.</li>
-            <li>Designed a greedy routing algorithm with adaptive power allocation, reducing average packet loss by <em>28%</em> vs. baseline.</li>
-            <li>Trained and tuned Random Forest models for QoT classification (97% accuracy) with SHAP-based feature importance analysis.</li>
-            <li>Packaged experiments with Docker &amp; Makefiles; published reproducible reports and visualizations using Plotly.</li>
-            <li>Collaborated with a 4-person team using Git, issue templates, code reviews, and CI for tests and linting.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge ml">Python</span><span class="badge">NumPy</span><span class="badge">Pandas</span>
-            <span class="badge">Scikit-learn</span><span class="badge">Random Forest</span>
-            <span class="badge">Simulation</span><span class="badge">Wireless Networks</span>
-            <span class="badge aws">Docker</span><span class="badge">Plotly</span><span class="badge">SHAP</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="grid">
-
-        <div class="card">
-          <h3>MLOps Pipeline for Model Training &amp; Serving</h3>
-          <div class="meta">Ongoing</div>
-          <p>Reusable template that trains, packages, and deploys models with automated evaluation gates.</p>
-          <ul>
-            <li>Data validation (Great Expectations), unit tests (pytest), and CI workflows (GitHub Actions).</li>
-            <li>Dockerized inference with FastAPI; rollouts via blue-green strategy and metrics checks.</li>
-            <li>Model registry + drift monitoring hooks for production feedback loops.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge aws">Docker</span><span class="badge">FastAPI</span><span class="badge">GitHub Actions</span>
-            <span class="badge">Great Expectations</span><span class="badge">Model Registry</span>
-          </div>
-        </div>
-        
-        <div class="card">
-          <h3>Fake News &amp; Misinformation Detection</h3>
-          <div class="meta">Mar 2025 – Jul 2025</div>
-          <p>Multimodal classification combining BERT embeddings with metadata features to detect misinformation.</p>
-          <ul>
-            <li>Processed 50k+ articles; used SMOTE and class-weighted loss to handle imbalance.</li>
-            <li>Achieved 92% ROC-AUC with stacked BERT + XGBoost; calibrated probabilities with Platt scaling.</li>
-            <li>Logged experiments using MLflow; exported confusion matrices and per-topic breakdowns.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge nlp">BERT</span><span class="badge nlp">NLP</span>
-            <span class="badge">XGBoost</span><span class="badge">MLflow</span><span class="badge">SMOTE</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Energy Consumption Forecasting</h3>
-          <div class="meta">Sep 2024 – Jan 2025</div>
-          <p>Hybrid LSTM + ARIMA pipeline to predict electricity demand using IoT and weather data.</p>
-          <ul>
-            <li>Integrated IoT sensor and weather features; added calendar &amp; holiday effects via feature stores.</li>
-            <li>Reduced sMAPE by ~20% against ARIMA/Prophet baselines through ensembling &amp; hyper-parameter tuning.</li>
-            <li>Deployed a lightweight FastAPI service exposing forecast endpoints with caching.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge ts">Time-Series</span><span class="badge ml">TensorFlow</span>
-            <span class="badge">ARIMA</span><span class="badge">Prophet</span><span class="badge">FastAPI</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Customer Churn Prediction &amp; Insights</h3>
-          <div class="meta">Jan 2024 – Apr 2024</div>
-          <p>End-to-end churn prediction on subscription data with actionable retention insights.</p>
-          <ul>
-            <li>Feature engineered tenure, engagement spans, price sensitivity, and ticket sentiment (VADER).</li>
-            <li>Compared LightGBM, CatBoost, and Logistic Regression; delivered lift charts and SHAP-based playbooks.</li>
-            <li>Built a Streamlit dashboard for cohort analysis and what-if simulations.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">LightGBM</span><span class="badge">CatBoost</span>
-            <span class="badge">Streamlit</span><span class="badge">SHAP</span><span class="badge db">SQL</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section id="certifications" class="section">
-    <div class="container">
-      <h2>Certifications</h2>
-      <div class="card" style="display:flex; align-items:center; gap:12px;">
-        <img src="Screenshot 2025-08-31 211829.png" alt="AWS Cloud badge" style="width:56px; height:56px; border-radius:10px; border:1px solid var(--border);">
         <div>
-          <h3 style="margin:0;">AWS Certified Cloud Practitioner</h3>
-          <div class="meta">Amazon Web Services</div>
+          <h1 data-aos="fade-up">Hey, I'm <span class="no-wrap">Vishnu Priya Mallineni</span></h1>
+          <div class="typewriter" data-aos="fade-up" data-aos-delay="100">Data Scientist / AI-ML Engineer</div>
+          <p data-aos="fade-up" data-aos-delay="200">
+            A Computer Science graduate passionate about using data to drive insights and building AI systems that solve real-world problems.
+          </p>
+          <p data-aos="fade-up" data-aos-delay="300">
+            Actively seeking roles in <strong>Data Science</strong> and <strong>AI/ML Engineering</strong>, with strong foundations in programming, machine learning, and cloud technologies.
+          </p>
+
+          <div class="social-links" data-aos="fade-up" data-aos-delay="400">
+            <a href="https://www.linkedin.com/in/vishnu-priya-mallineni" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:vishnupriyamallineni@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+
+          <!-- Buttons -->
+          <div class="btn-row" data-aos="fade-up" data-aos-delay="520">
+            <a class="btn-primary" href="https://drive.google.com/uc?export=download&id=1T4uNeoWvS6qdIRPWf_0bcd7T97qdcDVR" target="_blank" rel="noopener">
+              <i class="fa-solid fa-download"></i> Download Resume
+            </a>
+            <a class="btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScQekIia_LDdzmxOJHAKNevjNDfkG3nHrsfY2hs14Z-VrKPbA/viewform?usp=sharing&ouid=112880071553512636044" target="_blank" rel="noopener" aria-label="Open contact form">
+              <i class="fa-solid fa-paper-plane"></i> Get In Touch
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contactme" class="section">
-    <div class="container">
-      <h2>Contact</h2>
-      <div class="content" style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a class="btn-primary" href="mailto:vishnupriyamallineni@gmail.com">
-          <i class="fa-solid fa-envelope"></i> Email
-        </a>
-        <a class="btn-secondary" href="https://www.linkedin.com/in/vishnu-priya-mallineni" target="_blank" rel="noopener">
-          <i class="fa-brands fa-linkedin"></i> LinkedIn
-        </a>
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="content">
+          <ul>
+            <li><strong>Programming:</strong> Python, R, Java, C/C++/C#, SQL, MATLAB, Bash, Git, Jupyter</li>
+            <li><strong>ML/AI:</strong> TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, Random Forest, Deep &amp; Reinforcement Learning</li>
+            <li><strong>Data Science:</strong> Feature Engineering, Statistical Modeling, NLP, Time-Series Forecasting, Experiment Design, A/B Testing</li>
+            <li><strong>Databases &amp; Big Data:</strong> MySQL, PostgreSQL, MongoDB, Hadoop, Spark</li>
+            <li><strong>Visualization:</strong> Matplotlib, Seaborn, Plotly, Tableau, Power BI, Dash</li>
+            <li><strong>Cloud &amp; MLOps:</strong> AWS (EC2, S3, SageMaker), Docker, CI/CD, Model Monitoring</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="container">
+        <h2>Education</h2>
+        <div class="grid">
+          <div class="card">
+            <img class="thumb" src="C:/Users/vishn/Pictures/Screenshots/Screenshot 2025-08-31 201522.png" alt="Wright State University logo">
+            <h3>M.S. in Computer Science</h3>
+            <div class="meta">Wright State University · Aug 2023 – Jul 2025</div>
+          </div>
+          <div class="card">
+            <img class="thumb" src="C:/Users/vishn/Pictures/Screenshots/Screenshot 2025-08-31 202025.png" alt="Sree Vidyanikethan Engineering College logo">
+            <h3>B.Tech in Electronics &amp; Communication Engineering</h3>
+            <div class="meta">Sree Vidyanikethan Engineering College · Aug 2019 – May 2023</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="grid">
+          <div class="card" style="grid-column:span 12">
+            <h3>Graduate Research Assistant — Wright State University</h3>
+            <div class="meta">Aug 2024 – Jul 2025 · Dayton, OH</div>
+            <ul>
+              <li>Built a Python simulation framework for routing in Ad-Hoc Wireless Networks across 10k+ randomized topologies.</li>
+              <li>Engineered datasets capturing SINR, hop-count, bottleneck rate, latency, and energy utilization; automated data quality checks.</li>
+              <li>Designed a greedy routing algorithm with adaptive power allocation, reducing average packet loss by <em>28%</em> vs. baseline.</li>
+              <li>Trained and tuned Random Forest models for QoT classification (97% accuracy) with SHAP-based feature importance analysis.</li>
+              <li>Packaged experiments with Docker &amp; Makefiles; published reproducible reports and visualizations using Plotly.</li>
+              <li>Collaborated with a 4-person team using Git, issue templates, code reviews, and CI for tests and linting.</li>
+            </ul>
+            <div class="badges">
+              <span class="badge ml">Python</span><span class="badge">NumPy</span><span class="badge">Pandas</span>
+              <span class="badge">Scikit-learn</span><span class="badge">Random Forest</span>
+              <span class="badge">Simulation</span><span class="badge">Wireless Networks</span>
+              <span class="badge aws">Docker</span><span class="badge">Plotly</span><span class="badge">SHAP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="grid">
+
+          <div class="card">
+            <h3>MLOps Pipeline for Model Training &amp; Serving</h3>
+            <div class="meta">Ongoing</div>
+            <p>Reusable template that trains, packages, and deploys models with automated evaluation gates.</p>
+            <ul>
+              <li>Data validation (Great Expectations), unit tests (pytest), and CI workflows (GitHub Actions).</li>
+              <li>Dockerized inference with FastAPI; rollouts via blue-green strategy and metrics checks.</li>
+              <li>Model registry + drift monitoring hooks for production feedback loops.</li>
+            </ul>
+            <div class="badges">
+              <span class="badge aws">Docker</span><span class="badge">FastAPI</span><span class="badge">GitHub Actions</span>
+              <span class="badge">Great Expectations</span><span class="badge">Model Registry</span>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>Fake News &amp; Misinformation Detection</h3>
+            <div class="meta">Mar 2025 – Jul 2025</div>
+            <p>Multimodal classification combining BERT embeddings with metadata features to detect misinformation.</p>
+            <ul>
+              <li>Processed 50k+ articles; used SMOTE and class-weighted loss to handle imbalance.</li>
+              <li>Achieved 92% ROC-AUC with stacked BERT + XGBoost; calibrated probabilities with Platt scaling.</li>
+              <li>Logged experiments using MLflow; exported confusion matrices and per-topic breakdowns.</li>
+            </ul>
+            <div class="badges">
+              <span class="badge nlp">BERT</span><span class="badge nlp">NLP</span>
+              <span class="badge">XGBoost</span><span class="badge">MLflow</span><span class="badge">SMOTE</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Energy Consumption Forecasting</h3>
+            <div class="meta">Sep 2024 – Jan 2025</div>
+            <p>Hybrid LSTM + ARIMA pipeline to predict electricity demand using IoT and weather data.</p>
+            <ul>
+              <li>Integrated IoT sensor and weather features; added calendar &amp; holiday effects via feature stores.</li>
+              <li>Reduced sMAPE by ~20% against ARIMA/Prophet baselines through ensembling &amp; hyper-parameter tuning.</li>
+              <li>Deployed a lightweight FastAPI service exposing forecast endpoints with caching.</li>
+            </ul>
+            <div class="badges">
+              <span class="badge ts">Time-Series</span><span class="badge ml">TensorFlow</span>
+              <span class="badge">ARIMA</span><span class="badge">Prophet</span><span class="badge">FastAPI</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Customer Churn Prediction &amp; Insights</h3>
+            <div class="meta">Jan 2024 – Apr 2024</div>
+            <p>End-to-end churn prediction on subscription data with actionable retention insights.</p>
+            <ul>
+              <li>Feature engineered tenure, engagement spans, price sensitivity, and ticket sentiment (VADER).</li>
+              <li>Compared LightGBM, CatBoost, and Logistic Regression; delivered lift charts and SHAP-based playbooks.</li>
+            </ul>
+            <div class="badges">
+              <span class="badge">LightGBM</span><span class="badge">CatBoost</span>
+              <span class="badge">Streamlit</span><span class="badge">SHAP</span><span class="badge db">SQL</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section">
+      <div class="container">
+        <h2>Certifications</h2>
+        <div class="card" style="display:flex; align-items:center; gap:12px;flex-wrap:wrap">
+          <img src="C:/Users/vishn/Pictures/Screenshots/Screenshot 2025-08-31 211829.png" alt="AWS Cloud badge" style="width:56px; height:56px; border-radius:10px; border:1px solid var(--border); object-fit:cover; background:#f8fafc;">
+          <div>
+            <h3 style="margin:0">AWS Certified Cloud Practitioner</h3>
+            <div class="meta">Amazon Web Services</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contactme" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <div class="content" style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn-primary" href="mailto:vishnupriyamallineni@gmail.com">
+            <i class="fa-solid fa-envelope"></i> Email
+          </a>
+          <a class="btn-secondary" href="https://www.linkedin.com/in/vishnu-priya-mallineni" target="_blank" rel="noopener">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- JS -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>AOS.init({ offset: 0, once: true });</script>
+  <script>
+    AOS.init({ offset: 0, once: true });
+
+    // Mobile drawer behavior
+    const drawer = document.getElementById('mobileDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const openBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeDrawer');
+
+    function openDrawer(){
+      drawer.classList.add('open');
+      backdrop.classList.add('show');
+      openBtn.setAttribute('aria-expanded','true');
+      // block scroll beneath
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      backdrop.classList.remove('show');
+      openBtn.setAttribute('aria-expanded','false');
+      document.documentElement.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+    // close when clicking a link
+    document.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click', closeDrawer));
+    // close on Escape
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDrawer(); });
+  </script>
 </body>
 </html>
-
-
-
-
