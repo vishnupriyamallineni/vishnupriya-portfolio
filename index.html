@@ -72,6 +72,11 @@
     .btn-secondary{background:#f1fafb;color:#0f5e66;border:1px solid var(--border)}
     .btn-secondary:hover{background:#e6f6f7;border-color:#bfe7ea}
 
+    /* Skill Cards Grid */
+.skills-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:20px}
+.skill-card {background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.skill-card h3{margin:0 0 12px;font-size:1.05rem;color:#0f5e66}
+.skill-card p{margin:0;font-size:.92rem;line-height:1.5;color:#374151}
     /* SECTIONS */
     section{scroll-margin-top:calc(var(--navh) + 20px)}
     .section{padding:72px 0}
@@ -209,22 +214,41 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="section">
-      <div class="container">
-        <h2>Skills</h2>
-        <div class="content">
-          <ul>
-            <li><strong>Programming:</strong> Python, R, Java, C, C++, C#, SQL, MATLAB, Bash, Jupyter</li>
-            <li><strong>Web Development:</strong> HTML5, CSS3, JavaScript (ES6+), TypeScript, React.js, Next.js, Redux, Tailwind CSS, Bootstrap, Node.js, Express.js, Django, Flask, REST APIs, GraphQL, Firebase, Git, GitHub, GitLab, VS Code, Vercel, Netlify, Heroku, Responsive Design, Testing (Jest, Cypress)</li>
-            <li><strong>ML/AI:</strong> TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, Random Forest, Deep &amp; Reinforcement Learning</li>
-            <li><strong>Data Science:</strong> Feature Engineering, Statistical Modeling, NLP, Time-Series Forecasting, Experiment Design, A/B Testing</li>
-            <li><strong>Databases &amp; Big Data:</strong> MySQL, PostgreSQL, MongoDB, Hadoop, Spark</li>
-            <li><strong>Visualization:</strong> Matplotlib, Seaborn, Plotly, Tableau, Power BI, Dash</li>
-            <li><strong>Cloud &amp; MLOps:</strong> AWS (EC2, S3, SageMaker), Docker, CI/CD, Model Monitoring</li>>
-          </ul>
-        </div>
-      </div>
-    </section>
+          <section id="skills" class="section">
+          <div class="container">
+          <h2>Skills</h2>
+          <div class="skills-grid">
+          <div class="skill-card">
+          <h3>Programming</h3>
+          <p>Python, R, Java, C, C++, C#, SQL, MATLAB, Bash, Jupyter</p>
+          </div>
+          <div class="skill-card">
+          <h3>Web Development</h3>
+          <p>HTML5, CSS3, JavaScript (ES6+), TypeScript, React.js, Tailwind CSS, Bootstrap, Node.js, Express.js, Django, Flask</p>
+          </div>
+          <div class="skill-card">
+          <h3>ML/AI</h3>
+          <p>TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, Random Forest, Deep &amp; Reinforcement Learning</p>
+          </div>
+          <div class="skill-card">
+          <h3>Data Science</h3>
+          <p>Feature Engineering, Statistical Modeling, NLP, Time-Series Forecasting, Experiment Design, A/B Testing</p>
+          </div>
+          <div class="skill-card">
+          <h3>Databases &amp; Big Data</h3>
+          <p>MySQL, PostgreSQL, MongoDB, Hadoop, Spark</p>
+          </div>
+          <div class="skill-card">
+          <h3>Visualization</h3>
+          <p>Matplotlib, Seaborn, Plotly, Tableau, Power BI, Dash</p>
+          </div>
+          <div class="skill-card">
+          <h3>Cloud &amp; MLOps</h3>
+          <p>AWS (EC2, S3, SageMaker), Docker, CI/CD, Model Monitoring</p>
+          </div>
+          </div>
+          </div>
+          </section>
 
     <!-- EDUCATION -->
     <section id="education" class="section">
@@ -406,4 +430,3 @@
   </script>
 </body>
 </html>
-
