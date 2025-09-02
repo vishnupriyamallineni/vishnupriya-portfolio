@@ -92,6 +92,24 @@
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:.2s}
     .card:hover{transform:translateY(-2px)}
     .card h3{margin:6px 0 8px;font-size:1.05rem;color:#0f5e66}
+    /* Improve readability for Experience & Projects sections */
+#experience .card ul li,
+#projects .card ul li {
+  line-height: 1.8;     /* increase line spacing inside lists */
+  margin-bottom: 8px;   /* add space between bullet points */
+}
+
+#experience .card p,
+#projects .card p {
+  line-height: 1.8;     /* increase paragraph spacing */
+  margin-bottom: 12px;  /* space after paragraphs */
+}
+
+#experience .card,
+#projects .card {
+  padding: 24px;        /* more breathing room inside cards */
+}
+
     .meta{color:var(--muted);font-size:.9rem;margin-bottom:10px}
     .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .badge{border:1px solid var(--border);color:var(--text);font-size:.8rem;padding:4px 10px;border-radius:999px;background:#f6f7fb}
@@ -396,40 +414,107 @@
   </main>
 
   <!-- JS -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({ offset: 0, once: true });
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  // Attach all attributes first, then init AOS
+  function applyRevealAttributes() {
+    // Section wrappers (Skills, Education, Experience, Projects, Certifications, Contact)
+    document.querySelectorAll('.section .container').forEach((el, i) => {
+      el.setAttribute('data-aos', 'fade-up');
+      el.setAttribute('data-aos-delay', String(60 + i * 40));
+      el.setAttribute('data-aos-anchor-placement', 'top-bottom');
+    });
 
+    // Headings
+    document.querySelectorAll('.section h2').forEach((el, i) => {
+      el.setAttribute('data-aos', 'zoom-out');
+      el.setAttribute('data-aos-delay', String(80 + i * 60));
+    });
+
+    // Cards (education/experience/projects/certifications) and skill cards
+    document.querySelectorAll('.grid > .card, .skill-card').forEach((el, i) => {
+      el.setAttribute('data-aos', 'fade-up');
+      el.setAttribute('data-aos-delay', String((i % 6) * 100)); // nice cascade
+      el.setAttribute('data-aos-anchor-placement', 'top-bottom');
+    });
+
+    // Thumbnails & content blocks for extra polish
+    document.querySelectorAll('.thumb, .content').forEach((el, i) => {
+      el.setAttribute('data-aos', 'fade-up');
+      el.setAttribute('data-aos-delay', String(120 + (i % 5) * 80));
+    });
+
+    // Profile photo (hero)
+    const heroImg = document.querySelector('.profile-photo');
+    if (heroImg) {
+      heroImg.setAttribute('data-aos', 'zoom-in');
+      heroImg.setAttribute('data-aos-duration', '900');
+    }
+  }
+
+  function initAOS() {
+    if (window.AOS && typeof AOS.init === 'function') {
+      AOS.init({
+        offset: 24,
+        duration: 700,
+        easing: 'ease-out-cubic',
+        once: true,
+      });
+      // In case attributes were added after DOM ready
+      AOS.refreshHard();
+      // Safety: re-calc on resize/orientation
+      window.addEventListener('resize', () => AOS.refresh());
+    } else {
+      // Fallback: if AOS failed to load, just show everything
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }
+  }
+
+  // Run when DOM is ready (attributes exist before AOS init)
+  document.addEventListener('DOMContentLoaded', () => {
+    applyRevealAttributes();
+  });
+
+  // Run when page fully loaded (AOS script guaranteed to be present or not)
+  window.addEventListener('load', () => {
+    initAOS();
+
+    // -----------------------------
     // Mobile drawer behavior
-    const drawer = document.getElementById('mobileDrawer');
+    // -----------------------------
+    const drawer   = document.getElementById('mobileDrawer');
     const backdrop = document.getElementById('drawerBackdrop');
-    const openBtn = document.getElementById('menuBtn');
+    const openBtn  = document.getElementById('menuBtn');
     const closeBtn = document.getElementById('closeDrawer');
 
-    function openDrawer(){
+    function openDrawer() {
       drawer.classList.add('open');
       backdrop.classList.add('show');
-      openBtn.setAttribute('aria-expanded','true');
-      // block scroll beneath
+      openBtn.setAttribute('aria-expanded', 'true');
       document.documentElement.style.overflow = 'hidden';
     }
-    function closeDrawer(){
+    function closeDrawer() {
       drawer.classList.remove('open');
       backdrop.classList.remove('show');
-      openBtn.setAttribute('aria-expanded','false');
+      openBtn.setAttribute('aria-expanded', 'false');
       document.documentElement.style.overflow = '';
     }
 
-    openBtn.addEventListener('click', openDrawer);
-    closeBtn.addEventListener('click', closeDrawer);
-    backdrop.addEventListener('click', closeDrawer);
-    // close when clicking a link
-    document.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click', closeDrawer));
-    // close on Escape
-    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDrawer(); });
-  </script>
+    if (drawer && backdrop && openBtn && closeBtn) {
+      openBtn.addEventListener('click', openDrawer);
+      closeBtn.addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+      document.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+    }
+  });
+</script>
+
+
 </body>
 </html>
-
 
 
